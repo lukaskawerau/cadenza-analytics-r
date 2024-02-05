@@ -17,7 +17,7 @@ for (i in 1:length(p)){
   # example: mount inst/plumber/calculation/plumber.R on /calculation
   # plumber.R defines the sub-path.
   # In this case it is  /hello, so the endpoint is /calculation/hello
-  pr_mount(root, paste0("/",gsub("/plumber.R","", gsub("inst/plumber/","", l[i]))), p[[i]])
+  pr_mount(root, paste0("/",gsub("/plumber.R","", gsub("/plumber/","", l[i]))), p[[i]])
 }
 
 # Set the API's port and launch it
