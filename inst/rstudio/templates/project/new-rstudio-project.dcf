@@ -1,4 +1,4 @@
 Title: New Analytics Extension for Cadenza
-Binding: newRStudioProject
+Binding: create_analytics_extension
 Subtitle: Create a new Analytics Extension for disy Cadenza
 OpenFiles: analytics_extension.R

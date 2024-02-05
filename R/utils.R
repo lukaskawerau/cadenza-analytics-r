@@ -12,33 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#' Generate Demo Extensions
-#' @export
-create_analytics_extension <- function() {
-  demo_extension_path <- system.file("rstudio/templates/project/resources", package="CadenzaAnalytics")
-  files <- list.files(demo_extension_path, recursive = TRUE, full.names = TRUE)
-  working_path = getwd()
-  created_files <- sapply(files, function(x) {
-    # Replace the source_dir path with dest_dir in each file's path
-    new_path <- gsub(demo_extension_path, working_path, x)
-    # Extract the directory path of the new file location
-    new_dir <- dirname(new_path)
+# This function is invoked when creating a new Plumber API project in the
+# RStudio IDE. The function will be called when the user invokes the
+# New Project wizard using the project template defined in the file at:
+#
+#   inst/rstudio/templates/project/new-rstudio-project.dcf
 
-    # Check if the directory exists, if not, create it
-    if(!dir.exists(new_dir)) {
-      dir.create(new_dir, recursive = TRUE)
-    }
+# The new project template mechanism is documented at:
+# https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html
 
-    # Finally, copy the file
-    file.copy(x, new_path)
-  })
-}
+create_analytics_extension <- function(path, ...) {
 
-#' Generate Basic Dockerfile
-#' @export
-create_extension_dockerfile <- function() {
-  dockerfile_path <- system.file("docker", package="CadenzaAnalytics")
-  files <- list.files(dockerfile_path, recursive = TRUE, full.names = TRUE)
-  working_path = getwd()
-  created_files <- sapply(files, function(x) file.copy(x, gsub(dockerfile_path, working_path, x)))
+  # ensure path exists
+  dir.create(path, recursive = TRUE, showWarnings = FALSE)
+
+  # copy 'resources' folder to path
+  resources <- system.file("rstudio", "templates", "project", "resources",
+                           package = "plumber", mustWork = TRUE)
+
+  files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
+  source <- file.path(resources, files)
+  target <- file.path(path, files)
+  file.copy(source, target)
 }
