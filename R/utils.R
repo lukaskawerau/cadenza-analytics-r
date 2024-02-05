@@ -28,7 +28,7 @@ create_analytics_extension <- function(path, ...) {
 
   # copy 'resources' folder to path
   resources <- system.file("rstudio", "templates", "project", "resources",
-                           package = "plumber", mustWork = TRUE)
+                           package = "CadenzaAnalytics", mustWork = TRUE)
 
   files <- list.files(resources, recursive = TRUE, include.dirs = FALSE)
   source <- file.path(resources, files)
