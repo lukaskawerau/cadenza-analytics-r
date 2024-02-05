@@ -21,6 +21,8 @@
 # The new project template mechanism is documented at:
 # https://rstudio.github.io/rstudio-extensions/rstudio_project_templates.html
 
+#' Create Analytics Extension
+#' @export
 create_analytics_extension <- function(path, ...) {
 
   # ensure path exists

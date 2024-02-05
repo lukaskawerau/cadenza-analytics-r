@@ -2,10 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{create_analytics_extension}
 \alias{create_analytics_extension}
-\title{Generate Demo Extensions}
+\title{Create Analytics Extension}
 \usage{
-create_analytics_extension()
+create_analytics_extension(path, ...)
 }
 \description{
-Generate Demo Extensions
+Create Analytics Extension
 }
